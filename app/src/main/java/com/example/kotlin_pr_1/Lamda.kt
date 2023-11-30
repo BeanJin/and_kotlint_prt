@@ -28,6 +28,18 @@ fun main() {
     println(b.pizzaIsGreat())
 
     println(extendString("김철수", 26))
+
+    println(calculateGrade(97))
+
+    val lamda = {number : Double ->
+        number == 4.3213
+    }
+
+    println(invokeLamda(lamda))
+    println(invokeLamda({it > 3.22}))
+
+    println(invokeLamda { it > 3.22 })
+
 }
 
 // 확장함수
@@ -40,3 +52,21 @@ fun extendString(name : String, age : Int) : String{
     val introduceMyself : String.(Int) -> String = {"나는 ${this} 그리고 ${it}살 이다"}
     return  name.introduceMyself(age)
 }
+
+// 람다의 Return
+
+val calculateGrade : (Int) -> String = {
+    when(it) {
+        in 0..40 -> "실패"
+        in 41..70 -> "통과"
+        in 71..100 -> "완벽"
+        else -> "에러"
+    }
+}
+
+// 람다를 표현하는 여러가지 방법
+
+fun invokeLamda(lamda : (Double) -> Boolean) : Boolean {
+    return lamda(5.2343)
+}
+
